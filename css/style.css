@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-top: 20px;
+}
+
+#task-input {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 10px auto;
+    display: block;
+    font-size: 1em;
+}
+
+#add-task-btn {
+    padding: 10px;
+    font-size: 1em;
+    width: auto;
+    margin: 10px auto;
+    display: block;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 500px;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    #task-input, #add-task-btn, ul {
+        width: 90%;
+    }
+
+    li {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+}
