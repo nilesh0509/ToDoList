@@ -1,65 +1,79 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const taskInput = document.getElementById('task-input');
-    const addTaskBtn = document.getElementById('add-task-btn');
-    const taskList = document.getElementById('task-list');
+const inputValue = document.getElementById('inputBox');
+const addbtn2 = document.getElementById('addbtn');
+const todoList = document.querySelector('.todoList');
+const clearbtn = document.getElementById('clearbtn');
+const pendingTasks = document.querySelector('.pendingTasks');
 
-    // Load tasks from local storage
-    loadTasks();
+let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-    // Add task event listener
-    addTaskBtn.addEventListener('click', () => {
-        const taskText = taskInput.value;
-        if (taskText) {
-            addTask(taskText);
-            taskInput.value = ''; // Clear input
+console.log(todos);
+
+// Render the todo list when the page is loaded
+renderTodoList();
+
+function updateLocalStorage() {
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+addbtn2.addEventListener("click", function (e) {
+    const inputBox = inputValue.value;
+    if (inputBox.trim() !== '') {
+        // todos.push(inputBox);
+        if (selectedTaskIndex !== null) {
+            todos[selectedTaskIndex] = inputBox;
+            selectedTaskIndex = null;
+        } else {
+            todos.push(inputBox);
         }
-    });
-
-    // Task list click event (for edit/delete)
-    taskList.addEventListener('click', (e) => {
-        const target = e.target;
-        if (target.classList.contains('delete-btn')) {
-            deleteTask(target.parentElement);
-        } else if (target.classList.contains('task-item')) {
-            editTask(target);
-        }
-    });
-
-    function addTask(text) {
-        const li = document.createElement('li');
-        li.textContent = text;
-        li.classList.add('task-item');
-        const deleteBtn = document.createElement('button');
-        deleteBtn.textContent = 'Delete';
-        deleteBtn.classList.add('delete-btn');
-        li.appendChild(deleteBtn);
-        taskList.appendChild(li);
-        saveTasks();
-    }
-
-    function deleteTask(task) {
-        taskList.removeChild(task);
-        saveTasks();
-    }
-
-    function editTask(task) {
-        const newTaskText = prompt('Edit task:', task.textContent);
-        if (newTaskText) {
-            task.firstChild.textContent = newTaskText;
-            saveTasks();
-        }
-    }
-
-    function saveTasks() {
-        const tasks = [];
-        taskList.querySelectorAll('li').forEach(task => {
-            tasks.push(task.firstChild.textContent);
-        });
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-    }
-
-    function loadTasks() {
-        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        tasks.forEach(task => addTask(task));
+        inputValue.value = '';
+        renderTodoList();
+        updateLocalStorage();
     }
 });
+
+clearbtn.addEventListener("click", function (e) {
+    todos = [];
+    renderTodoList();
+    updateLocalStorage();
+});
+
+let selectedTaskIndex = null;
+
+function renderTodoList() {
+    todoList.innerHTML = "";
+    todos.forEach(function (item, index) {
+        const li = document.createElement("li");
+        li.textContent = item;
+        li.addEventListener("click", () => {
+            selectedTaskIndex = (selectedTaskIndex === index) ? null : index;
+            inputValue.value = (selectedTaskIndex !== null) ? item : '';
+        });
+        // Create delete button
+        const deleteButton = document.createElement("div");
+        deleteButton.textContent = "-";
+        deleteButton.classList.add("icon"); // Add class to delete button
+        deleteButton.addEventListener("click", function () {
+            deleteTodoItem(index);
+        });
+
+        // Append delete button to the list item
+        li.appendChild(deleteButton);
+        todoList.appendChild(li);
+    });
+    totalTask()
+}
+
+// Function to delete todo item
+function deleteTodoItem(index) {
+    todos.splice(index, 1);
+    renderTodoList();
+    inputValue.value = '';
+    updateLocalStorage(); // Update local storage
+}
+
+
+function totalTask() {
+    const task = todos.length;
+    pendingTasks.textContent = task;
+}
+

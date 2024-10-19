@@ -7,10 +7,18 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Todo List</h1>
-    <input type="text" id="task-input" placeholder="Add a new task">
-    <button id="add-task-btn">Add Task</button>
-    <ul id="task-list"></ul>
+    <div class="wrapper">
+        <header>MY TO DO LIST</header>
+        <div class="inputField">
+          <input type="text" id="inputBox" placeholder="Add your new todo">
+          <button type="button" id="addbtn">+</button>
+        </div>
+        <ul class="todoList"></ul>
+        <div class="footer">
+          <span>You have <span class="pendingTasks"></span> pending tasks</span>
+          <button id="clearbtn" class="clearAll">Clear All</button>
+        </div>
+      </div>
 
     <script src="script/script.js"></script>
 </body>
