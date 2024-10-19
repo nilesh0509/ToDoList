@@ -7,19 +7,18 @@ A simple, sleek, and responsive **To-Do List** application to help you manage ta
 
 ## 🚀 [Live Demo](#) 
 
-Check out the live version of this project [here](#) (replace with the actual link if deployed online).
+Check out the live version of this project [here](https://nilesh0509.github.io/ToDoList/) .
 
 ## 📸 Preview
 
-![Todo List Preview](https://via.placeholder.com/800x400.png?text=Todo+List+App+Preview)  
+![Todo List Preview](https://github.com/user-attachments/assets/cbeb8118-e629-4654-b177-aa0a14cba014)  
 *Preview of the To-Do List in action*
 
 ---
 
 ## 🌟 Features
 
-✨ **Add Tasks:** Effortlessly add new tasks to your to-do list.  
-📝 **Manage Tasks:** View, track, and manage your pending tasks.  
+✨ **Add Tasks:** Effortlessly add new tasks to your to-do list.   
 🗑️ **Remove Tasks:** Delete individual tasks with a single click.  
 🧹 **Clear All Tasks:** Option to clear all tasks at once.  
 📱 **Responsive Design:** Fully optimized for all device sizes.
@@ -30,7 +29,7 @@ Check out the live version of this project [here](#) (replace with the actual li
 
 - **HTML5** – For the basic structure of the app.
 - **CSS3** – For an eye-catching, responsive layout.
-- **JavaScript (ES6)** – To add dynamic behavior for the to-do list.
+- **JavaScript** – To add dynamic behavior for the to-do list.
 
 ---
 
